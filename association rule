@@ -1,0 +1,33 @@
+fun<-function(x){
+x<-paste(x,"b",sep='')
+  }
+
+fun1<-function(x){
+  ifelse(x=="NAb",'',x)
+  
+}
+
+
+data <- read.transactions("datab.csv", sep = ",",rm.duplicates=T)
+
+rm(data)
+
+data<-read.csv("final.csv",header=F,stringsAsFactors=F)
+str(data)
+
+write.csv(data, file = "mydata.csv",row.names=FALSE, na="")
+
+data <- read.transactions("databuy.csv", sep = ",")
+
+summary(data)
+
+data1<-read.csv("mydata.csv",header=F,stringsAsFactors=F)
+str(data1)
+?read.csv
+itemFrequency(data[,1:3])
+summary(data)
+
+datarules <- apriori(data, parameter = list(support =0.0001, confidence = 0.25, minlen = 2))
+
+summary(datarules)
+
